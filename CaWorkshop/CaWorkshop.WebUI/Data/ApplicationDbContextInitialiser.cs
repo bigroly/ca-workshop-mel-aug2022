@@ -1,5 +1,4 @@
 ﻿using CaWorkshop.Domain.Entities;
-using CaWorkshop.WebUI.Models;
 
 using Microsoft.EntityFrameworkCore;
 

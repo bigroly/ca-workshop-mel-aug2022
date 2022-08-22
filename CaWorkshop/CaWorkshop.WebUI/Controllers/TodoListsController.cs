@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CaWorkshop.WebUI.Data;
-using CaWorkshop.WebUI.Models;
 using CaWorkshop.Domain.Entities;
 
 namespace CaWorkshop.WebUI.Controllers
