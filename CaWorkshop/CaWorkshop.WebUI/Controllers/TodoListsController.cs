@@ -1,76 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using CaWorkshop.Domain.Entities;
-using CaWorkshop.Infrastructure.Data;
+﻿using CaWorkshop.Application.TodoLists.Commands.CreateTodoList;
+using CaWorkshop.Application.TodoLists.Commands.DeleteTodoList;
+using CaWorkshop.Application.TodoLists.Commands.UpdateTodoList;
 using CaWorkshop.Application.TodoLists.Queries.GetTodoLists;
+using CaWorkshop.Domain.Entities;
 
-namespace CaWorkshop.WebUI.Controllers
+using MediatR;
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace CaWorkshop.WebUI.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class TodoListsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TodoListsController : ControllerBase
+    private readonly IMediator _mediator;
+
+    public TodoListsController(IMediator mediator)
     {
-        private readonly ApplicationDbContext _context;
+        _mediator = mediator;
+    }
 
-        public TodoListsController(ApplicationDbContext context)
+    // GET: api/TodoLists
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<TodoList>>> GetTodoLists()
+    {
+        return await _mediator.Send(new GetTodoListsQuery());
+    }
+
+    // POST: api/TodoLists
+    [HttpPost]
+    public async Task<ActionResult<int>> PostTodoList(
+        CreateTodoListCommand command)
+    {
+        return await _mediator.Send(command);
+    }
+
+    // PUT: api/TodoLists/5
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutTodoList(int id,
+        UpdateTodoListCommand command)
+    {
+        if (id != command.Id)
         {
-            _context = context;
+            return BadRequest();
         }
 
-        // GET: api/TodoLists
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoList>>> GetTodoLists(
-        [FromServices] IGetTodoListsQuery query)
-        {
-            return await query.Handle();
-        }
+        await _mediator.Send(command);
 
-        // PUT: api/TodoLists/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<ActionResult<int>> PutTodoList(TodoList todoList)
-        {
-            _context.TodoLists.Add(todoList);
-            await _context.SaveChangesAsync();
+        return NoContent();
+    }
 
-            return todoList.Id;
-        }
+    // DELETE: api/TodoLists/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteTodoList(int id)
+    {
+        await _mediator.Send(new DeleteTodoListCommand { Id = id });
 
-        // POST: api/TodoLists
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<TodoList>> PostTodoList(TodoList todoList)
-        {
-            _context.TodoLists.Add(todoList);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetTodoList", new { id = todoList.Id }, todoList);
-        }
-
-        // DELETE: api/TodoLists/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodoList(int id)
-        {
-            var todoList = await _context.TodoLists.FindAsync(id);
-            if (todoList == null)
-            {
-                return NotFound($"Todo with Id [{id}] not found");
-            }
-
-            _context.TodoLists.Remove(todoList);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool TodoListExists(int id)
-        {
-            return (_context.TodoLists?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+        return NoContent();
     }
 }
