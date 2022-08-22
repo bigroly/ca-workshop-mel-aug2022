@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Duende.IdentityServer.EntityFramework.Options;
 using CaWorkshop.WebUI.Models;
+using CaWorkshop.Domain.Entities;
 
 namespace CaWorkshop.WebUI.Data;
 
