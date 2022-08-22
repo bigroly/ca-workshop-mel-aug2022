@@ -12,6 +12,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddScoped<ApplicationDbContextInitialiser>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -25,10 +26,14 @@ builder.Services.AddAuthentication()
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-builder.Services.AddScoped<ApplicationDbContextInitialiser>();
+builder.Services.AddOpenApiDocument(configure =>
+{
+    configure.Title = "CaWorkshop API";
+});
 
 var app = builder.Build();
 
+#if DEBUG
 // Initialise and seed the database on start-up
 using (var scope = app.Services.CreateScope())
 {
@@ -46,6 +51,7 @@ using (var scope = app.Services.CreateScope())
         throw;
     }
 }
+#endif
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -60,6 +66,8 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseOpenApi();
+app.UseSwaggerUi3();
 app.UseRouting();
 
 app.UseAuthentication();
