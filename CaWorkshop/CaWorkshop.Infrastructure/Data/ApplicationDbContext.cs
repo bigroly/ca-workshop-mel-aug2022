@@ -5,7 +5,7 @@ using Duende.IdentityServer.EntityFramework.Options;
 using CaWorkshop.Domain.Entities;
 using CaWorkshop.Infrastructure.Identity;
 
-namespace CaWorkshop.WebUI.Data;
+namespace CaWorkshop.Infrastructure.Data;
 
 public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
 {

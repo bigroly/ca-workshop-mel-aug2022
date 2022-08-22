@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
-using CaWorkshop.WebUI.Data;
 using CaWorkshop.Infrastructure.Identity;
+using CaWorkshop.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
