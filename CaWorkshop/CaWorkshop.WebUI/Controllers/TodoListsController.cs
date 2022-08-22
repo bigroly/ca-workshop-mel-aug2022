@@ -58,10 +58,6 @@ namespace CaWorkshop.WebUI.Controllers
         [HttpPost]
         public async Task<ActionResult<TodoList>> PostTodoList(TodoList todoList)
         {
-          if (_context.TodoLists == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.TodoLists'  is null.");
-          }
             _context.TodoLists.Add(todoList);
             await _context.SaveChangesAsync();
 
@@ -72,14 +68,10 @@ namespace CaWorkshop.WebUI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTodoList(int id)
         {
-            if (_context.TodoLists == null)
-            {
-                return NotFound();
-            }
             var todoList = await _context.TodoLists.FindAsync(id);
             if (todoList == null)
             {
-                return NotFound();
+                return NotFound($"Todo with Id [{id}] not found");
             }
 
             _context.TodoLists.Remove(todoList);
