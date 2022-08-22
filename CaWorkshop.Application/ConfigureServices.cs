@@ -1,10 +1,14 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using System.Reflection;
+
+using MediatR;
+
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ConfigureServices
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        // TODO: Wire-up services.
+        services.AddMediatR(Assembly.GetExecutingAssembly());
         
         return services;
     }
