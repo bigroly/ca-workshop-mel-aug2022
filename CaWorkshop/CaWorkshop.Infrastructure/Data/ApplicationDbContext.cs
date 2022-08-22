@@ -25,6 +25,15 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
             Assembly.GetExecutingAssembly());
     }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder
+            .LogTo(Console.WriteLine)
+            .EnableDetailedErrors();
+
+        base.OnConfiguring(optionsBuilder);
+    }
+
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
 
     public DbSet<TodoList> TodoLists => Set<TodoList>();
