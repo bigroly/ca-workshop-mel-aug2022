@@ -25,60 +25,32 @@ namespace CaWorkshop.WebUI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoList>>> GetTodoLists()
         {
-          if (_context.TodoLists == null)
-          {
-              return NotFound();
-          }
-            return await _context.TodoLists.ToListAsync();
-        }
-
-        // GET: api/TodoLists/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TodoList>> GetTodoList(int id)
-        {
-          if (_context.TodoLists == null)
-          {
-              return NotFound();
-          }
-            var todoList = await _context.TodoLists.FindAsync(id);
-
-            if (todoList == null)
-            {
-                return NotFound();
-            }
-
-            return todoList;
+            return await _context.TodoLists
+              .Select(l => new TodoList
+              {
+                  Id = l.Id,
+                  Title = l.Title,
+                  Items = l.Items.Select(i => new TodoItem
+                  {
+                      Id = i.Id,
+                      ListId = i.ListId,
+                      Title = i.Title,
+                      Done = i.Done,
+                      Priority = i.Priority,
+                      Note = i.Note
+                  }).ToList()
+              }).ToListAsync();
         }
 
         // PUT: api/TodoLists/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoList(int id, TodoList todoList)
+        public async Task<ActionResult<int>> PutTodoList(TodoList todoList)
         {
-            if (id != todoList.Id)
-            {
-                return BadRequest();
-            }
+            _context.TodoLists.Add(todoList);
+            await _context.SaveChangesAsync();
 
-            _context.Entry(todoList).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TodoListExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return todoList.Id;
         }
 
         // POST: api/TodoLists
