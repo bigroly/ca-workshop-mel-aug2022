@@ -13,4 +13,9 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
         
     }
+
+    public DbSet<TodoItem> TodoItems => Set<TodoItem>();
+
+    public DbSet<TodoList> TodoLists => Set<TodoList>();
+
 }
