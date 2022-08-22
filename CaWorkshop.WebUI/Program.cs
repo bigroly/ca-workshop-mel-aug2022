@@ -29,6 +29,10 @@ builder.Services.AddAuthentication()
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+builder.Services.AddOpenApiDocument(configure =>
+{
+    configure.Title = "CaWorkshop API";
+});
 
 var app = builder.Build();
 
@@ -63,6 +67,9 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseOpenApi();// generates and serves the OpenAPI Spec (swagger.json)
+app.UseSwaggerUi3(); // generate the Swagger UI for the spec above
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
