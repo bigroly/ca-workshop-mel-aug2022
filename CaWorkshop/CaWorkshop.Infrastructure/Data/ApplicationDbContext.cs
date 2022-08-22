@@ -5,10 +5,11 @@ using Duende.IdentityServer.EntityFramework.Options;
 using CaWorkshop.Domain.Entities;
 using CaWorkshop.Infrastructure.Identity;
 using System.Reflection;
+using CaWorkshop.Application.Common.Interfaces;
 
 namespace CaWorkshop.Infrastructure.Data;
 
-public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
+public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, IApplicationDbContext
 {
     public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
         : base(options, operationalStoreOptions)
