@@ -2,19 +2,22 @@
 using CaWorkshop.Application.TodoLists.Queries.GetTodoLists;
 using CaWorkshop.Infrastructure.Data;
 using FluentAssertions;
+using System.Threading;
+using System.Threading.Tasks;
+using Xunit;
+
 namespace CaWorkshop.Application.UnitTests.TodoLists.Queries.GetTodoLists;
 
-public class GetTodoListsQueryTests : IDisposable
+[Collection(nameof(QueryCollection))]
+public class GetTodoListsQueryTests
 {
-    private readonly DbContextFactory _contextFactory;
     private readonly ApplicationDbContext _context;
     private readonly IMapper _mapper;
 
-    public GetTodoListsQueryTests()
+    public GetTodoListsQueryTests(TestFixture fixture)
     {
-        _contextFactory = new DbContextFactory();
-        _context = _contextFactory.Create();
-        _mapper = MapperFactory.Create();
+        _context = fixture.Context;
+        _mapper = fixture.Mapper;
     }
 
     [Fact]
@@ -31,10 +34,5 @@ public class GetTodoListsQueryTests : IDisposable
         result.Should().BeOfType<TodosVm>();
         result.Lists.Should().HaveCount(1);
         result.Lists[0].Items.Should().HaveCount(4);
-    }
-
-    public void Dispose()
-    {
-        _contextFactory.Dispose();
     }
 }

@@ -24,8 +24,6 @@ builder.Services.AddOpenApiDocument(configure =>
 
 var app = builder.Build();
 
-#if DEBUG
-// Initialise and seed the database on start-up
 using (var scope = app.Services.CreateScope())
 {
     try
@@ -42,7 +40,6 @@ using (var scope = app.Services.CreateScope())
         throw;
     }
 }
-#endif
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
