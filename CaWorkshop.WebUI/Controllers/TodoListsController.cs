@@ -12,7 +12,7 @@ namespace CaWorkshop.WebUI.Controllers
     {
         // GET: api/TodoLists
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoList>>> GetTodoLists()
+        public async Task<ActionResult<TodosVm>> GetTodoLists()
         {
             return await Mediator.Send(new GetTodoListsQuery());
         }
@@ -26,6 +26,8 @@ namespace CaWorkshop.WebUI.Controllers
 
         // PUT: api/TodoLists/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PutTodoList(int id, UpdateTodoListCommand command)
         {
             if (id != command.Id) return BadRequest();
