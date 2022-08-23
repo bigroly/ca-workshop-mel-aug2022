@@ -4,8 +4,8 @@ using CaWorkshop.Application;
 using CaWorkshop.Infrastructure;
 using CaWorkshop.Infrastructure.Identity;
 using CaWorkshop.Infrastructure.Data;
-using FluentValidation.AspNetCore;
 using CaWorkshop.Application.Common.Interfaces;
+using CaWorkshop.WebUI.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +13,8 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+    options.Filters.Add(new ApiExceptionFilterAttribute()));
 builder.Services.AddRazorPages();
 
 builder.Services.AddOpenApiDocument(configure =>
