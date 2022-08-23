@@ -1,8 +1,9 @@
-﻿namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists;
+﻿using CaWorkshop.Application.Common.Mappings;
 using CaWorkshop.Domain.Entities;
-using System.Linq.Expressions;
 
-public class TodoListDto
+namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists;
+
+public class TodoListDto : IMapFrom<TodoList>
 {
     public int Id { get; set; }
 
@@ -10,19 +11,4 @@ public class TodoListDto
 
     public IList<TodoItemDto> Items { get; set; }
         = new List<TodoItemDto>();
-
-    public static Expression<Func<TodoList, TodoListDto>> Projection
-    {
-        get
-        {
-            return list => new TodoListDto
-            {
-                Id = list.Id,
-                Title = list.Title,
-                Items = list.Items.AsQueryable()
-                    .Select(TodoItemDto.Projection)
-                    .ToList()
-            };
-        }
-    }
 }
