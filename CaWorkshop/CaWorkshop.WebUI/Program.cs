@@ -4,6 +4,8 @@ using CaWorkshop.Application;
 using CaWorkshop.Infrastructure;
 using CaWorkshop.Infrastructure.Identity;
 using CaWorkshop.Infrastructure.Data;
+using FluentValidation.AspNetCore;
+using CaWorkshop.Application.Common.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
