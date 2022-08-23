@@ -1,23 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaWorkshop.WebUI", "CaWorkshop.WebUI\CaWorkshop.WebUI.csproj", "{C8EA28CA-5AA6-4D68-8D2D-9FED88AB9E5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaWorkshop.WebUI", "CaWorkshop.WebUI\CaWorkshop.WebUI.csproj", "{C8EA28CA-5AA6-4D68-8D2D-9FED88AB9E5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaWorkshop.Domain", "CaWorkshop.Domain\CaWorkshop.Domain.csproj", "{BC541B56-868C-464A-8800-21588F43714E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaWorkshop.Domain", "CaWorkshop.Domain\CaWorkshop.Domain.csproj", "{BC541B56-868C-464A-8800-21588F43714E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaWorkshop.Application", "CaWorkshop.Application\CaWorkshop.Application.csproj", "{C2BE9162-C3C5-4606-816A-48435BE3D9D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaWorkshop.Application", "CaWorkshop.Application\CaWorkshop.Application.csproj", "{C2BE9162-C3C5-4606-816A-48435BE3D9D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaWorkshop.Infrastructure", "CaWorkshop.Infrastructure\CaWorkshop.Infrastructure.csproj", "{9E0AD668-7534-488F-B13F-C3AEF0726715}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaWorkshop.Infrastructure", "CaWorkshop.Infrastructure\CaWorkshop.Infrastructure.csproj", "{9E0AD668-7534-488F-B13F-C3AEF0726715}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6C6C236D-5E54-4A2C-9220-A8CED6EBA014}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C8EA28CA-5AA6-4D68-8D2D-9FED88AB9E5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -36,5 +38,11 @@ Global
 		{9E0AD668-7534-488F-B13F-C3AEF0726715}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E0AD668-7534-488F-B13F-C3AEF0726715}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E0AD668-7534-488F-B13F-C3AEF0726715}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5B629A77-CB66-4C67-9F22-5466BBD23CC5}
 	EndGlobalSection
 EndGlobal

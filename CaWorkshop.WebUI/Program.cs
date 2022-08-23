@@ -9,6 +9,11 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 // Add WebUI Services
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddControllersWithViews();
+
+//builder.Services
+//    .AddValidatorsFromAssemblyContaining<IApplicationDbContext>()
+//    .AddFluentValidationAutoValidation();
+
 builder.Services.AddRazorPages();
 
 builder.Services.AddOpenApiDocument(configure =>

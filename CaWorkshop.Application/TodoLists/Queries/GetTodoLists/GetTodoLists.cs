@@ -30,7 +30,6 @@ public class GetTodoListsQueryHandler : IRequestHandler<GetTodoListsQuery, Todos
 
     public async Task<TodosVm> Handle(GetTodoListsQuery request, CancellationToken cancellationToken)
     {
-        
         return new TodosVm
         {
             PriorityLevels = Enum.GetValues(typeof(PriorityLevel))
