@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaWorkshop.Application", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaWorkshop.Infrastructure", "CaWorkshop.Infrastructure\CaWorkshop.Infrastructure.csproj", "{F291AFC8-5B1C-4910-BCF0-2E1C94C5C048}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaWorkshop.Application.UnitTests", "CaWorkshop.Application.UnitTests\CaWorkshop.Application.UnitTests.csproj", "{00EBACE0-FAFE-47F4-A8C5-AE1A47CFCEA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F291AFC8-5B1C-4910-BCF0-2E1C94C5C048}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F291AFC8-5B1C-4910-BCF0-2E1C94C5C048}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F291AFC8-5B1C-4910-BCF0-2E1C94C5C048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00EBACE0-FAFE-47F4-A8C5-AE1A47CFCEA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00EBACE0-FAFE-47F4-A8C5-AE1A47CFCEA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00EBACE0-FAFE-47F4-A8C5-AE1A47CFCEA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00EBACE0-FAFE-47F4-A8C5-AE1A47CFCEA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
